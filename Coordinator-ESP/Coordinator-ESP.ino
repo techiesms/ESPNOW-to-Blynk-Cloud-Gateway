@@ -21,6 +21,7 @@
 #include <WiFi.h>
 #include <SimpleTimer.h> //https://github.com/jfturcot/SimpleTimer
 #include <ArduinoJson.h> //https://github.com/bblanchon/ArduinoJson
+#include <SPI.h>
 #include <Wire.h>                     // oled
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
@@ -49,7 +50,9 @@ int humidity = 0;
 // OLED screen Configurations
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
+#define OLED_RESET -1       // Reset pin # (or -1 if sharing Arduino reset pin)
+#define SCREEN_ADDRESS 0x3c ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 
 
@@ -100,7 +103,6 @@ void displayText()
 }
 
 void setup() {
-
   //ONBOARD LED WILL GLOW IN CASE OF RESET
   pinMode(2, OUTPUT);
   digitalWrite(2, HIGH);
@@ -113,7 +115,7 @@ void setup() {
   Serial2.begin(115200, SERIAL_8N1, RXD2, TXD2);
 
   // Initialising OLED (I2C) Communication
-  if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C))
+  if (!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS))
   { // Address 0x3D for 128x64
     Serial.println(F("SSD1306 allocation failed"));
     for (;;);
@@ -158,7 +160,6 @@ void setup() {
 
 void loop()
 {
-
   if (Serial2.available())
   {
     // Recieving data (JSON) from BLYNK ESP
