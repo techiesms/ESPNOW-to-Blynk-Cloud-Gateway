@@ -12,7 +12,7 @@ Also it will RECIEVE data from Coordinator ESP using ESP-NOW
 uint8_t broadcastAddress[] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF}; //Coordinator ESP MAC address
 
 #include <DHT.h>
-#define DHT11PIN 5                  // DHT11 on GPIO 5
+#define DHT11PIN 15                  // DHT11 on GPIO 5
 DHT dht(DHT11PIN, DHT11);
 
 #include <ArduinoJson.h>
@@ -63,6 +63,11 @@ void loop() {
   doc_to_espnow["v2"] = hum;                       // Creating JSON data. Here { v2 : 34.35 }
   serializeJson(doc_to_espnow, send_jsondata);
   esp_now_send(broadcastAddress, (uint8_t *) send_jsondata.c_str(), send_jsondata.length());
+
+      Serial.print("Temp = ");
+      Serial.println(temp);
+      Serial.print("Hum = ");
+      Serial.println(hum);
                                                     // Sending it to Coordinater ESP
   Serial.println(send_jsondata); 
   send_jsondata = "";
