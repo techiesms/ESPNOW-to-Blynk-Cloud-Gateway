@@ -15,11 +15,18 @@
   developed for techiesms
 
 */
-#define BLYNK_TEMPLATE_ID "TMPLkMNvOYYR"
+//#define BLYNK_TEMPLATE_ID "TMPLkMNvOYYR"
+//#define BLYNK_DEVICE_NAME "ESPNOW"
+
+
+#define BLYNK_TEMPLATE_ID "TMPLklmoR0_L"
 #define BLYNK_DEVICE_NAME "ESPNOW"
+#define BLYNK_AUTH_TOKEN "AjNNyentXYnGjtKxM4-YEl1Y8fQ96LHY"
 
 #define BLYNK_FIRMWARE_VERSION        "0.1.0"
 #define BLYNK_PRINT Serial
+#define APP_DEBUG
+#define USE_WROVER_BOARD
 
 #include "BlynkEdgent.h"
 #include <ArduinoJson.h>
