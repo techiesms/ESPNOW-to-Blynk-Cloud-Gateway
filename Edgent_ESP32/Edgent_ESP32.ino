@@ -14,6 +14,9 @@
 
   developed for techiesms
 
+  Modified to work by STM
+  add this code to the Blynk WiFi ESP32 board
+
 */
 //#define BLYNK_TEMPLATE_ID "TMPLkMNvOYYR"
 //#define BLYNK_DEVICE_NAME "ESPNOW"

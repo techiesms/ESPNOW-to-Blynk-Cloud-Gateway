@@ -1,6 +1,6 @@
 /*
 
-  Coordiante ESP's Code.
+  Coordinator ESP's Code.
   This ESP will recieve ESPNOW data from END Node ESP's and Serially trasnfers it to BLYNK ESP and vise versa.
   MAC Address of this ESP is Provided to ESD Node ESP.
 
@@ -11,6 +11,10 @@
 
     Developed for techiesms
     https://www.youtube.com/techiesms
+
+    Modified by STM to work
+    load this code onto ESPNOW board
+
 */
 
 #include <esp_now.h>
