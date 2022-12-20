@@ -21,6 +21,11 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 
+// There must be one global SimpleTimer object.
+// More SimpleTimer objects can be created and run,
+// although there is little point in doing so.
+SimpleTimer timer;
+
 
 uint8_t broadcastAddress[] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF}; // Universal Broadcast address
 
@@ -64,7 +69,7 @@ void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len)
     Serial.print("Serilising to Serial2: ");
     Serial.println(recv_jsondata);
     temperature  = doc_from_espnow["v1"];                 // Storing Temperature Data
-    humidity  = doc_from_espnow["v2"]                 // Storing Humidity Data
+    humidity  = doc_from_espnow["v2"];                 // Storing Humidity Data
     serializeJson(doc_from_espnow, Serial2);            // Writing Data to Serial2
   }
 
