@@ -46,7 +46,6 @@ int humidity = 0;
 #define RXD2 16
 #define TXD2 17
 
-
 // OLED screen Configurations
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
