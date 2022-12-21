@@ -103,6 +103,7 @@ void displayText()
 }
 
 void setup() {
+  
   //ONBOARD LED WILL GLOW IN CASE OF RESET
   pinMode(2, OUTPUT);
   digitalWrite(2, HIGH);
@@ -125,7 +126,17 @@ void setup() {
   display.clearDisplay();
   delay(200);
 
+  // Display Text
+  display.setTextSize(1);
+  display.setTextColor(WHITE);
+  display.setCursor(0,28);
+  display.println("Hello world!");
+  display.display();
+  delay(2000);
+  display.clearDisplay();
 
+
+ 
 
   WiFi.mode(WIFI_STA);
 
@@ -160,7 +171,18 @@ void setup() {
 
 void loop()
 {
+  display.clearDisplay();
+  display.setTextSize(1);
+  display.setTextColor(WHITE);
+  display.setCursor(2, 10);
+  display.print("Temperature :");
+  display.println(temperature);
+  display.print("Humidity :");
+  display.println(humidity);
+  display.display();
+  
   if (Serial2.available())
+
   {
     // Recieving data (JSON) from BLYNK ESP
     String recv_str_jsondata = Serial2.readStringUntil('\n');
@@ -171,10 +193,17 @@ void loop()
 
     // Broadcasting data (JSON) via ESP-NOW
     esp_err_t result = esp_now_send(broadcastAddress, (uint8_t *) recv_str_jsondata.c_str(), sizeof(recv_str_jsondata) * recv_str_jsondata.length());
+  
 
+  
     if (result == ESP_OK)
+
+
     {
       Serial.println("Sent with success");
+
+
+  
     }
     else
     {
