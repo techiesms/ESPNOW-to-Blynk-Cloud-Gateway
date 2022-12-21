@@ -172,12 +172,12 @@ void setup() {
 void loop()
 {
   display.clearDisplay();
-  display.setTextSize(1);
+  display.setTextSize(2);
   display.setTextColor(WHITE);
   display.setCursor(2, 10);
-  display.print("Temperature :");
+  display.print("Temp: ");
   display.println(temperature);
-  display.print("Humidity :");
+  display.print("Humid: ");
   display.println(humidity);
   display.display();
   
