@@ -21,6 +21,7 @@
 #include <WiFi.h>
 #include <SimpleTimer.h> //https://github.com/jfturcot/SimpleTimer
 #include <ArduinoJson.h> //https://github.com/bblanchon/ArduinoJson
+#include <SPI.h>
 #include <Wire.h>                     // oled
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
@@ -49,7 +50,9 @@ int humidity = 0;
 // OLED screen Configurations
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
+#define OLED_RESET -1       // Reset pin # (or -1 if sharing Arduino reset pin)
+#define SCREEN_ADDRESS 0x3c ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 
 
@@ -158,7 +161,6 @@ void setup() {
 
 void loop()
 {
-
   if (Serial2.available())
   {
     // Recieving data (JSON) from BLYNK ESP
